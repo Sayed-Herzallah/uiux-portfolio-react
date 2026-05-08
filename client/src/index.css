@@ -1,0 +1,466 @@
+/* ============================================================
+   styles.css — unified & cleaned
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@400&family=Poppins:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================ */
+:root {
+  /* Brand colours */
+  --color-linen:             rgba(253, 251, 244, 1);
+  --color-cream:             rgba(253, 251, 244, 0.97);
+  --color-geraldine:         rgba(252, 155, 122, 1);
+  --color-jaffa:             rgba(244, 118,  74, 1);
+  --color-blue-chalk:        rgba(235, 222, 255, 1);
+  --color-carnation-pink:    rgba(252, 155, 190, 1);
+  --color-white-translucent: rgba(255, 255, 255, 0.6);
+  --color-black:             #000000;
+
+  /* Typography */
+  --font-main: "Poppins", Helvetica, sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  /* Layout */
+  --radius-card:        32px;
+  --marquee-duration:   30s;
+  --shimmer-width:      200px; /* ← كان ناقص، كان بيكسر animation الـ shimmer */
+}
+
+/* ============================================================
+   TAILWIND BASE LAYER
+   ============================================================ */
+@layer base {
+  * { @apply border-border; }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Shadcn/Tailwind theme tokens */
+  :root {
+    --background:           0 0% 100%;
+    --foreground:           222.2 47.4% 11.2%;
+    --muted:                210 40% 96.1%;
+    --muted-foreground:     215.4 16.3% 46.9%;
+    --popover:              0 0% 100%;
+    --popover-foreground:   222.2 47.4% 11.2%;
+    --border:               214.3 31.8% 91.4%;
+    --input:                214.3 31.8% 91.4%;
+    --card:                 transparent;
+    --card-foreground:      222.2 47.4% 11.2%;
+    --primary:              222.2 47.4% 11.2%;
+    --primary-foreground:   210 40% 98%;
+    --secondary:            210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --accent:               210 40% 96.1%;
+    --accent-foreground:    222.2 47.4% 11.2%;
+    --destructive:          0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    --ring:                 215 20.2% 65.1%;
+    --radius:               0.5rem;
+  }
+
+  .dark {
+    --background:           224 71% 4%;
+    --foreground:           213 31% 91%;
+    --muted:                223 47% 11%;
+    --muted-foreground:     215.4 16.3% 56.9%;
+    --accent:               216 34% 17%;
+    --accent-foreground:    210 40% 98%;
+    --popover:              224 71% 4%;
+    --popover-foreground:   215 20.2% 65.1%;
+    --border:               216 34% 17%;
+    --input:                216 34% 17%;
+    --card:                 transparent;
+    --card-foreground:      213 31% 91%;
+    --primary:              210 40% 98%;
+    --primary-foreground:   222.2 47.4% 1.2%;
+    --secondary:            222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+    --destructive:          0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --ring:                 216 34% 17%;
+    --radius:               0.5rem;
+  }
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS  (تعريف واحد بس، مش مكرر)
+   ============================================================ */
+@keyframes spin {
+  to { transform: rotate(1turn); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%, 90%, 100% { background-position: calc(-100% - var(--shimmer-width)) 0; }
+  30%,     60%  { background-position: calc( 100% + var(--shimmer-width)) 0; }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(-100% - var(--gap))); }
+}
+
+@keyframes image-glow {
+  0%  { opacity: 0; animation-timing-function: cubic-bezier(0.74, 0.25, 0.76, 1); }
+  10% { opacity: 0.7; animation-timing-function: cubic-bezier(0.12, 0.01, 0.08, 0.99); }
+  to  { opacity: 0.4; }
+}
+
+/* ============================================================
+   ANIMATION UTILITY CLASSES
+   ============================================================ */
+.animate-spin         { animation: spin 1s linear infinite; }
+.animate-fade-in      { animation: fade-in  1s var(--animation-delay, 0s) ease both; }
+.animate-fade-up      { animation: fade-up  1s var(--animation-delay, 0s) ease both; }
+.animate-fade-in-up   { animation: fade-in-up 0.6s ease both; }
+.animate-shimmer      { animation: shimmer 8s infinite; }
+
+.animate-marquee {
+  animation: marquee-scroll var(--duration, var(--marquee-duration)) linear infinite;
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration) linear infinite;
+}
+
+/* ============================================================
+   BACKGROUND HELPERS
+   ============================================================ */
+.bg-linen { background-color: var(--color-linen); }
+.bg-cream { background-color: var(--color-cream); }
+
+/* ============================================================
+   PORTFOLIO ROOT
+   ============================================================ */
+.portfolio-root {
+  position: relative;
+  width: 100%;
+}
+
+.portfolio-sections {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.portfolio-section-wrap { width: 100%; }
+.portfolio-section-bg   { width: 100%; }
+
+/* ── Outer centering shell ──────────────────────────────── */
+.portfolio-section-outer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 2400px;
+  margin: 0 auto;
+  padding: 64px 16px;
+}
+
+@media (min-width: 640px)  { .portfolio-section-outer { padding: 64px 24px; } }
+@media (min-width: 768px)  { .portfolio-section-outer { padding: 80px 40px; } }
+@media (min-width: 1024px) { .portfolio-section-outer { padding: 120px 80px; } }
+@media (min-width: 1280px) { .portfolio-section-outer { padding: 120px 128px; } }
+@media (min-width: 1536px) { .portfolio-section-outer { padding: 120px 160px; } }
+
+/* ── Card ───────────────────────────────────────────────── */
+.portfolio-card {
+  width: 100%;
+  max-width: 1570px;
+  background-color: var(--color-white-translucent);
+  box-shadow: var(--shadow-card);
+  border-radius: 0;
+  border: none;
+  opacity: 0;                        /* ← لازم تبدأ بـ 0 عشان animation الـ forwards تشتغل */
+  animation: fade-in-up 0.6s ease forwards;
+}
+
+.portfolio-card__body {
+  padding: 48px 20px;
+}
+
+@media (min-width: 640px)  { .portfolio-card__body { padding: 48px 32px; } }
+@media (min-width: 768px)  { .portfolio-card__body { padding: 64px 40px; } }
+@media (min-width: 1024px) { .portfolio-card__body { padding: 120px 44px; } }
+
+/* ============================================================
+   SECTION INNER LAYOUT
+   ============================================================ */
+.section-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.section-inner--wp {
+  gap: 32px;
+  padding: 0;
+}
+
+@media (min-width: 768px) { .section-inner--wp { padding: 0 10px; } }
+
+/* ── Header ─────────────────────────────────────────────── */
+.section-header {
+  width: 100%;
+  padding: 0;
+}
+
+@media (min-width: 768px) { .section-header { padding: 0 10px; } }
+
+.section-header__content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1481px;
+}
+
+.section-header--wp { max-width: 1481px; }
+
+/* ── Title ──────────────────────────────────────────────── */
+.section-title {
+  font-family: var(--font-main);
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -1.63px;
+  color: var(--color-black);
+}
+
+@media (min-width: 1024px) { .section-title { line-height: 77.4px; } }
+
+/* ── Body text ──────────────────────────────────────────── */
+.section-body {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -0.76px;
+  color: var(--color-black);
+}
+
+@media (min-width: 768px)  { .section-body { font-size: 28px; } }
+@media (min-width: 1024px) { .section-body { font-size: 32px; line-height: 44px; } }
+
+/* Size variants */
+.text-md {
+  font-size: 24px;
+  letter-spacing: -0.19px;
+}
+@media (min-width: 768px)  { .text-md { font-size: 26px; } }
+@media (min-width: 1024px) { .text-md { font-size: 28px; } }
+
+.text-sm-body {
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: -0.67px;
+}
+@media (min-width: 768px)  { .text-sm-body { font-size: 26px; } }
+@media (min-width: 1024px) { .text-sm-body { font-size: 28px; line-height: 44px; } }
+
+.text-lg-colon {
+  font-size: 28px;
+  letter-spacing: -0.24px;
+}
+@media (min-width: 768px)  { .text-lg-colon { font-size: 30px; } }
+@media (min-width: 1024px) { .text-lg-colon { font-size: 32px; } }
+
+.text-bold { font-weight: 500; }
+
+/* Spacing helpers */
+.section-body .pt    { padding-top: 16px; }
+.section-body .pt-sm { padding-top: 8px; }
+
+/* ── Media wrappers ─────────────────────────────────────── */
+.section-media-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+}
+
+.separator {
+  height: 1px;
+  width: 100%;
+  background: transparent;
+}
+
+.galleries-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding-bottom: 64px;
+}
+
+.gallery-block {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+/* ── WordPress link ─────────────────────────────────────── */
+.wp-link {
+  font-family: var(--font-main);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: -0.67px;
+  color: var(--color-black);
+  text-decoration: underline;
+  display: inline-block;
+  width: fit-content;
+  transition: opacity 0.2s ease;
+}
+.wp-link:hover { opacity: 0.7; }
+
+@media (min-width: 768px)  { .wp-link { font-size: 26px; } }
+@media (min-width: 1024px) { .wp-link { font-size: 28px; line-height: 44px; } }
+
+/* ============================================================
+   MEDIA COMPONENTS
+   ============================================================ */
+.media-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: transparent;
+  box-shadow: var(--shadow-card);
+}
+
+.media-wrapper--grid {
+  padding: 24px 16px;
+}
+@media (min-width: 640px)  { .media-wrapper--grid { padding: 24px; } }
+@media (min-width: 768px)  { .media-wrapper--grid { padding: 24px 32px; } }
+@media (min-width: 1024px) { .media-wrapper--grid { padding: 24px 40px; } }
+
+/* ── Grids ──────────────────────────────────────────────── */
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .media-grid--2col      { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .media-grid--2col-asym { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr); gap: 40px; }
+  .media-grid--3col      { grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.72fr) minmax(0, 1.05fr); gap: 24px; }
+}
+
+@media (min-width: 1024px) {
+  .media-grid--2col      { gap: 80px; }
+  .media-grid--2col-asym { gap: 40px; }
+  .media-grid--3col      { gap: 40px; }
+}
+
+/* ── Images ─────────────────────────────────────────────── */
+.media-img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.media-img--left    { justify-self: start; }
+.media-img--center  { justify-self: center; }
+.media-img--right   { justify-self: end; }
+.media-img--full    { width: 100%; }
+.media-img--contain { object-fit: contain; }
+
+.media-img--rounded  { border-radius: 24px; }
+.media-img--bordered {
+  border: 12px solid rgba(250, 248, 245, 1);
+  border-radius: 24px;
+}
+
+.media-img--left.media-img--rounded                          { max-width: 537px; }
+.media-img--center.media-img--contain                        { max-width: 287px; }
+.media-img--right.media-img--rounded.media-img--bordered     { max-width: 422px; }
+
+/* ============================================================
+   MARQUEE BAND
+   ============================================================ */
+.marquee-band {
+  width: 100%;
+  background-color: var(--color-geraldine);
+  overflow: hidden;
+}
+
+.marquee-track {
+  padding: 24px 0;
+  overflow: hidden;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  width: max-content;
+  animation: marquee-scroll var(--marquee-duration) linear infinite;
+}
+
+/* Pause on hover — desktop only عشان mobile ما تتأثرش */
+@media (hover: hover) {
+  .marquee-band:hover .marquee-content {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-item {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 44px;
+  letter-spacing: -0.67px;
+  color: var(--color-black);
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+.marquee-item:hover { opacity: 0.8; }
+
+.marquee-dot {
+  opacity: 0.5;
+  margin-left: 8px;
+}
+
+@media (min-width: 768px) { .marquee-item { font-size: 32px; } }

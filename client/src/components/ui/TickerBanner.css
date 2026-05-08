@@ -1,0 +1,37 @@
+/* ─── TICKER BANNER ─── */
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  background: #E8573D; /* var(--accent) */
+  padding: 14px 0;
+  white-space: nowrap;
+}
+
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 20s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-inner span {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0 32px;
+}
+
+/* الـ ✦ بعد كل كلمة */
+.ticker-inner span::after {
+  content: "✦";
+  padding-left: 32px;
+  opacity: 0.6;
+}
+
+/* ─── ANIMATION ─── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
