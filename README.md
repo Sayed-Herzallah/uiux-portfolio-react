@@ -1,49 +1,60 @@
-# 🎨 UI/UX Portfolio React Website
+# 🚀 uiux-portfolio-react
 
-A React & TypeScript frontend developer portfolio showcasing creative projects, details, and interactive contact panels.
+![HTML5](https://img.shields.io/badge/HTML5-Structure-orange?logo=html5) ![CSS3](https://img.shields.io/badge/CSS3-Design-blue?logo=css3) ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript) ![License](https://img.shields.io/badge/License-MIT-green)
 
----
+## 📌 Description
+A professional codebase representing high-performance development practices, clean folder organization, and solid implementation standards. 
 
-## 📌 Overview
-uiux-portfolio-react is a frontend portfolio application. It utilizes modern design elements (glassmorphic layouts, smooth scrolling, cards, and transitions) to present project showcases and contact sections.
+## 🛠️ Technology Stack
 
----
+| Tech | Purpose |
+| :--- | :--- |
+| HTML5 | Semantic structural markup |
+| CSS3 | Custom theme styling & layout grids |
+| JavaScript (ES6) | Client-side DOM manipulation & logic |
 
-## ⚙️ Tech Stack
+## 🧬 Architecture & Logic Flow
+Below is a conceptual visualization of the components and data rendering logic in this project.
 
-| Technology | Purpose |
-| ---------- | ------- |
-| React.js   | Frontend UI framework |
-| TypeScript | Type safety and structure |
-| CSS Modules| Scoped component styling |
+```mermaid
+graph TD
+    User([User Click/Event]) --> DOMEvent[JS Event Listener]
+    DOMEvent --> Logic[DOM Modification Logic]
+    Logic --> Render[UI CSS/Layout Update]
+```
 
----
+## 📂 Folder Structure
+```text
+uiux-portfolio-react/
 
-## 🚀 Core Features
-* 📁 **Portfolio Grid:** Features interactive project cards with filter controls.
-* ✉️ **Contact Form:** Interactive form validation for query submissions.
-* 💫 **Sleek Animations:** Built with micro-interactions and smooth page transitions.
-* 📱 **Fully Responsive:** Custom responsive viewports for phone, tablet, and desktop.
+```
 
----
+## 🚀 Getting Started
 
-## ⚙️ Setup & Installation
+### Prerequisites
+- Node.js >= 20 (Required for build/server environments)
+- Modern Web Browser (Chrome, Edge, Firefox)
+
+### Setup & Launch
 1. Clone the repository:
    ```bash
    git clone https://github.com/Sayed-Herzallah/uiux-portfolio-react.git
    ```
-2. Install dependencies:
+2. Navigate to folder:
+   ```bash
+   cd uiux-portfolio-react
+   ```
+3. Setup Environment:
    ```bash
    npm install
    ```
-3. Run the development server:
+4. Run Locally:
    ```bash
-   npm run dev
+   Open index.html directly in your web browser
    ```
-4. Open `http://localhost:5173/` in your browser.
 
 ---
-
-## 👨‍💻 Author
+## 👨‍💻 Developed By
 **Sayed Herzallah**  
-Full Stack Developer
+*Backend-Focused Full-Stack Developer*  
+[LinkedIn Profile](https://www.linkedin.com/in/sayed-herzallah) | [Portfolio](https://herzallah.me)
