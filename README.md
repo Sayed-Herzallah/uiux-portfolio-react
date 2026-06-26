@@ -1,16 +1,16 @@
-# Sayed Herzallah Portfolio: Animated Interactive Developer Showcase
+# UI/UX Designer Portfolio: Interactive Design Showcase
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:0369a1&height=160&section=header&text=Sayed%20Herzallah%20Portfolio&fontSize=42&fontColor=ffffff&fontFamily=Outfit" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,100:0369a1&height=160&section=header&text=UI/UX%20Designer%20Portfolio&fontSize=42&fontColor=ffffff&fontFamily=Outfit" width="100%" />
 </div>
 
 <div align="center">
-  ![React](https://img.shields.io/badge/React-2023-blue?logo=react&style=for-the-badge) ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-Animations-blue?logo=framer&style=for-the-badge) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3-blue?logo=tailwindcss&style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+  <img src="https://img.shields.io/badge/React-2023-blue?logo=react&style=for-the-badge" alt="React" /> <img src="https://img.shields.io/badge/Framer%20Motion-Animations-blue?logo=framer&style=for-the-badge" alt="Framer Motion" /> <img src="https://img.shields.io/badge/TailwindCSS-v3-blue?logo=tailwindcss&style=for-the-badge" alt="TailwindCSS" /> <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </div>
 
-موقع **معرض الأعمال التفاعلي** للمهندس سيد حرز الله هو واجهة تعريفية متقدمة مبنية باستخدام React ومكتبة Framer Motion لإتاحة تجربة تصفح تفاعلية وحركية تستعرض مشاريعه الرائدة وخبراته الهندسية.
+موقع **معرض أعمال مصممة واجهات المستخدم (UI/UX)** التفاعلي، قمت بتطوير وبرمجة الواجهة الأمامية بالكامل باستخدام React ومكتبة Framer Motion لعرض التصاميم ونماذج العمل بصورة احترافية حركية.
 
-This repository holds the interactive portfolio frontend client for **Sayed Herzallah's Developer Showcase**. Featuring Framer Motion scroll triggers, project details popups, and a responsive contact form.
+An interactive, high-fidelity portfolio website developed for a professional UI/UX Designer. Designed by the UI/UX designer and developed end-to-end as a React frontend client by Sayed Herzallah.
 
 ---
 
